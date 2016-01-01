@@ -42,7 +42,7 @@ gulp.task('webpack:test', function() {
 });
 
 gulp.task('webpack:sass', function() {
-  return gulp.src(['app/sass/reset.scss', 'app/sass/base.scss', 'app/sass/layout.scss', 'app/sass/modules.scss', 'app/sass/state.scss'])
+  return gulp.src(['app/sass/*.scss'])
     .pipe(sourcemaps.init({loadMaps: true}))
       .pipe(sass().on('error', sass.logError))
       .pipe(concatCss('styles.min.css'))
