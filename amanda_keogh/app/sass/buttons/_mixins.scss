@@ -1,0 +1,22 @@
+@mixin button-size($size) {
+  @if $size == "small" {
+    font-size: .75em;
+    padding: .4em;
+  }
+  @else if $size == "large" {
+  font-size: 1.2em;
+  padding: .75em;
+  }
+}
+
+@mixin button($background-color, $color, $size) {
+  @include button-size($size);
+  background-color: $background-color;
+  color: $color;
+
+  &:hover,
+  &:active {
+    background-color: $color;
+    color: $background-color;
+  }
+}
