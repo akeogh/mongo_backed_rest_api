@@ -52,9 +52,9 @@
             <button class="form-button" type="submit">Submit Changes</button>
             <button class="form-button" data-ng-click="morderor.editing = false; refresh(morderor)">Cancel!!</button>
           </form>
-          <button>Pick Me!</button>
+          <button class="form-button">Pick Me!</button>
           <button class="form-button" data-ng-if="!morderor.editing" data-ng-click="morderor.editing = true">Change me!</button>
-          <button class="form-button" data-ng-click="remove(morderor)">Kill me!</button>
+          <button class="delete-button" data-ng-click="remove(morderor)">Kill me!</button>
         </div>
       </div>
   </main>

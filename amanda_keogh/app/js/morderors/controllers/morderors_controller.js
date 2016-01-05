@@ -29,6 +29,7 @@ module.exports = function(app) {
       .then(function(res) {
         $scope.morderors.push(res.data);
         $scope.newMorderor = {};
+        console.log('morderor created');
       }, function(err) {
         console.log(err.data);
       });
@@ -46,7 +47,7 @@ module.exports = function(app) {
 
   $scope.remove = function(morderor) {
     $scope.morderors.splice($scope.morderors.indexOf(morderor), 1);
-    $http.delete('api/morderors/' + morderor._id)
+    $http.delete('/api/morderors/' + morderor._id)
       .then(function(res) {
         console.log('morderor removed!');
       }, function(err) {
@@ -56,7 +57,7 @@ module.exports = function(app) {
   };
 
   $scope.refresh = function(morderor) {
-    $http.get('api/morderors/' + morderor._id)
+    $http.get('/api/morderors/' + morderor._id)
       .then(function(res) {
         console.log('refresh!');
         $scope.morderors[$scope.morderors.indexOf(morderor)] = res.data[0];

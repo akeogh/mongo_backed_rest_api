@@ -41,8 +41,8 @@ gulp.task('webpack:test', function() {
   .pipe(gulp.dest('test/client/'));
 });
 
-gulp.task('webpack:sass', function() {
-  return gulp.src(['app/sass/*.scss'])
+gulp.task('sass', function() {
+  return gulp.src(['app/sass/**/*.scss'])
     .pipe(sourcemaps.init({loadMaps: true}))
       .pipe(sass().on('error', sass.logError))
       .pipe(concatCss('styles.min.css'))
@@ -51,7 +51,7 @@ gulp.task('webpack:sass', function() {
     .pipe(gulp.dest('build/'));
 })
 
-gulp.task('build:dev', ['static:dev', 'webpack:dev', 'webpack:sass']);
+gulp.task('build:dev', ['static:dev', 'webpack:dev', 'sass']);
 
 /* * * * * * * * * * * * * * * * * *
             LINT TASKS
@@ -99,7 +99,7 @@ gulp.task('mocha', function() {
 gulp.task('buildWatch', function() {
   gulp.watch(htmlFiles, ['static:dev']);
   gulp.watch('app/js/**/*.js', ['build:dev']);
-  gulp.watch('app/sass/**/*.sass', ['webpack:sass']);
+  gulp.watch('app/sass/**/*.scss', ['sass']);
 });
 
 // backend

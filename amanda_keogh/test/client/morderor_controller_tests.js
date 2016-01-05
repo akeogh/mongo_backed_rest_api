@@ -35,19 +35,58 @@ describe('morderors controller', function() {
     });
 
     it('should add to the morderors array with GETall', function() {
-      $httpBackend.expectGET('/api/morderors').respond(200, [{_id: 1, name: 'testthing', verb: 'testaction'}]);
+      $httpBackend.expectGET('/api/morderors').respond(200, [{_id: 1, name: 'getall test', verb: 'testaction'}]);
       $scope.getAll();
       $httpBackend.flush();
-      expect($scope.morderors[0].name).toBe('testthing');
+      expect($scope.morderors[0].name).toBe('getall test');
     });
 
-    it('should post a new bear', function() {
-      $httpBackend.expectPOST('/api/morderors', {name: 'testthing', verb: 'testaction'}).respond(200, {name: 'differenttestthing'});
+    it('should post a new morderor', function() {
+      $httpBackend.expectPOST('/api/morderors', {name: 'testthing', verb: 'testaction'}).respond(200, {name: 'post test'});
       expect($scope.morderors.length).toBe(0);
-      $scope.create({name: 'testthing'});
+      $scope.create({name: 'testthing', verb:'testaction'});
       $httpBackend.flush();
-      expect($scope.morderors[0].name).toBe('differenttestthing');
-    })
+      expect($scope.morderors[0].name).toBe('post test');
+      expect($scope.newMorderor.name).toBe(undefined);
+    });
+
+    it('should edit a morderor', function() {
+      // test that "editing" property is changed
+      $httpBackend.expectPUT('/api/morderors/test', {_id: 'test', name: 'a test?', verb: 'no really', editing: false}).respond(200, {name: 'put test'});
+      $scope.update({_id: 'test', name: 'a test?', verb: 'no really'});
+      $httpBackend.flush();
+    });
+  });
+
+  //tests which require a dummy morderer in list
+  describe('delete, refresh', function() {
+    beforeEach(angular.mock.inject(function(_$httpBackend_, $rootScope) {
+      $httpBackend = _$httpBackend_;
+      $scope = $rootScope.$new();
+      $ControllerConstructor('IntroController', {$scope: $scope});
+      $scope.morderors = [{_id: 'test', name: 'test name', verb: 'test verb'}];
+    }));
+
+    afterEach(function() {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });
+
+    it('should delete a morderor', function() {
+      $httpBackend.expectDELETE('/api/morderors/test').respond(200);
+      $scope.remove({_id: 'test'});
+      $httpBackend.flush();
+      expect($scope.morderors[0]).toBe(undefined);
+    });
+
+    it('should refresh the current list with new information', function() {
+      $httpBackend.expectGET('/api/morderors/test').respond(200, [{_id: 'test', name: 'super diff'}]);
+      $scope.refresh($scope.morderors[0]);
+      $httpBackend.flush();
+      expect($scope.morderors[0].name).toBe('super diff');
+    });
 
   });
+
+
 })
