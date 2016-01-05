@@ -25,7 +25,7 @@ module.exports = function(app) {
   };
 
   $scope.create = function(morderor) {
-    $http.post('api/morderors', morderor)
+    $http.post('/api/morderors', morderor)
       .then(function(res) {
         $scope.morderors.push(res.data);
         $scope.newMorderor = {};
@@ -41,7 +41,7 @@ module.exports = function(app) {
         console.log('morderor updated.');
       }, function(err) {
         console.log(err.data);
-      })
+      });
   };
 
   $scope.remove = function(morderor) {
