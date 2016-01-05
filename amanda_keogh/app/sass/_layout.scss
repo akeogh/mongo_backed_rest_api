@@ -1,10 +1,6 @@
 header {
-  background-color: #51c1bc;
+  background-color: $accent-color;
   padding: 1.5em;
-}
-
-header h1 {
-  margin: 0px;
 }
 
 @media all and (min-width: 420px) {

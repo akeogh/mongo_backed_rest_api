@@ -1,0 +1,22 @@
+@import 'mixins';
+
+%button-defaults {
+  border: 1px solid $black;
+  border-radius: 5px;
+}
+
+button {
+  @extend %button-defaults;
+  @include button($second-accent, $white, "large");
+}
+
+.form-button {
+  @extend button-defaults;
+  @include button($second-accent, $white, "small");
+  margin-top: 10px;
+}
+
+.delete-button {
+  @extend button-defaults;
+  @include button(#ff0000, $white, "small");
+}
