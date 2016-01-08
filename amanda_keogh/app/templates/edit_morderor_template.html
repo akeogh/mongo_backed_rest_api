@@ -1,0 +1,11 @@
+  <form>
+    <label for="morderorName{{morderor._id}}">Name:</label>
+    <input type="text" id="morderorName{{morderor._id}}" data-ng-model="morderor.name" placeholder="{{morderor.name}}">
+
+    <label for="morderorVerb{{morderor._id}}">Verb:</label>
+    <input type="text" id="morderorVerb{{morderor._id}}" data-ng-model="morderor.verb" placeholder="{{morderor.verb}}">
+
+    <button class="form-button" type="submit">Submit Changes</button>
+    <button class="form-button" data-ng-click="morderor.editing = false; refresh(morderor)">Cancel!!</button>
+  </form>
+

@@ -9,10 +9,7 @@
 
 <body data-ng-app="morderMens">
   <main data-ng-controller="IntroController">
-    <header>
-      <h1>MORDERMENS!</h1>
-      <h2>{{intro}}</h2>
-    </header>
+    <header-directive></header-directive>
 
     <section class="container section-box" id="vs-container">
 
@@ -39,23 +36,21 @@
       <button data-ng-click="getAll()">Get Everyone!</button>
     </section>
       <div class="container">
-        <div class="morderor" data-ng-repeat="morderor in morderors">
-          <h2>{{morderor.name}}</h2>
-          <form name="editMorderor{{morderor._id}}" data-ng-submit="update(morderor)" data-ng-if="morderor.editing">
+        <morderor-directive data-ng-repeat="morderor in morderors" data-morderor="morderor">
 
-            <label for="morderorName{{morderor._id}}">Name:</label>
-            <input type="text" id="morderorName{{morderor._id}}" data-ng-model="morderor.name" placeholder="{{morderor.name}}">
+          <edit-morderor-directive
+            name="editMorderor{{morderor._id}}"
+            data-ng-submit="update(morderor)"
+            data-ng-if="morderor.editing"
+            data-bear="bear">
+          </edit-morderor-directive>
 
-            <label for="morderorVerb{{morderor._id}}">Verb:</label>
-            <input type="text" id="morderorVerb{{morderor._id}}" data-ng-model="morderor.verb" placeholder="{{morderor.verb}}">
-
-            <button class="form-button" type="submit">Submit Changes</button>
-            <button class="form-button" data-ng-click="morderor.editing = false; refresh(morderor)">Cancel!!</button>
-          </form>
           <button class="form-button">Pick Me!</button>
           <button class="form-button" data-ng-if="!morderor.editing" data-ng-click="morderor.editing = true">Change me!</button>
           <button class="delete-button" data-ng-click="remove(morderor)">Kill me!</button>
-        </div>
+
+        </morderor-directive>
+
       </div>
   </main>
 

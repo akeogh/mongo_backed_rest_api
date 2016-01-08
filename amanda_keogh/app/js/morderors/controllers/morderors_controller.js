@@ -1,6 +1,5 @@
 module.exports = function(app) {
   app.controller('IntroController', ['$scope', '$http', function($scope, $http) {
-  $scope.intro = 'You thought Rock/Paper/Scissors was intense. You were wrong!';
   $scope.choice = 'Rock'; //default
   $scope.morderors = [];
   $scope.newMorderor = {};
