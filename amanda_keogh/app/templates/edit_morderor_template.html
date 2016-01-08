@@ -1,4 +1,4 @@
-  <form>
+  <form data-ng-submit="update({morderor: morderor})">
     <label for="morderorName{{morderor._id}}">Name:</label>
     <input type="text" id="morderorName{{morderor._id}}" data-ng-model="morderor.name" placeholder="{{morderor.name}}">
 
@@ -6,6 +6,6 @@
     <input type="text" id="morderorVerb{{morderor._id}}" data-ng-model="morderor.verb" placeholder="{{morderor.verb}}">
 
     <button class="form-button" type="submit">Submit Changes</button>
-    <button class="form-button" data-ng-click="morderor.editing = false; refresh(morderor)">Cancel!!</button>
+    <ng-transclude></ng-transclude>
   </form>
 

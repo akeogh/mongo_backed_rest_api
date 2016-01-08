@@ -40,9 +40,10 @@
 
           <edit-morderor-directive
             name="editMorderor{{morderor._id}}"
-            data-ng-submit="update(morderor)"
+            data-ng-update="update(morderor)"
             data-ng-if="morderor.editing"
-            data-bear="bear">
+            data-morderor="morderor">
+            <button class="form-button" data-ng-click="morderor.editing = false; refresh(morderor)">Cancel!!</button>
           </edit-morderor-directive>
 
           <button class="form-button">Pick Me!</button>
